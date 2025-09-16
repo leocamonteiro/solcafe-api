@@ -1,0 +1,6 @@
+- Rode com node server.js
+- Acesse:
+- GET http://localhost:3000/products → lista todos
+- GET http://localhost:3000/products/1 → busca por ID
+- POST http://localhost:3000/products → adiciona novo
+- DELETE http://localhost:3000/products/1 → remove por ID

@@ -1,0 +1,89 @@
+{
+    "products":[
+  {
+    "id": 1,
+    "titulo": "Espresso",
+    "descricao": "Café curto, intenso, com crema aveludada — puro e marcante.",
+    "preco": 6.00,
+    "imagem": "https://images.pexels.com/photos/685527/pexels-photo-685527.jpeg"
+  },
+  {
+    "id": 2,
+    "titulo": "Doppio (Duplo Espresso)",
+    "descricao": "Dose dupla de espresso para quem quer intensidade máxima.",
+    "preco": 9.00,
+    "imagem": "https://images.pexels.com/photos/18032203/pexels-photo-18032203.jpeg"
+  },
+  {
+    "id": 3,
+    "titulo": "Ristretto",
+    "descricao": "Espresso ainda mais curto — concentração de sabor.",
+    "preco": 7.50,
+    "imagem": "https://images.pexels.com/photos/28901481/pexels-photo-28901481.jpeg"
+  },
+  {
+    "id": 4,
+    "titulo": "Macchiato",
+    "descricao": "Espresso “manchado” com pouquíssimo leite vaporizado — sabor forte com toque suave.",
+    "preco": 8.00,
+    "imagem": "https://images.pexels.com/photos/18424335/pexels-photo-18424335.jpeg"
+  },
+  {
+    "id": 5,
+    "titulo": "Cortado",
+    "descricao": "Espresso com leite vaporizado, na medida certa para suavizar sem perder força.",
+    "preco": 10.00,
+    "imagem": "https://images.pexels.com/photos/29915364/pexels-photo-29915364.jpeg"
+  },
+  {
+    "id": 6,
+    "titulo": "Flat White",
+    "descricao": "Leite sedoso e espuma fina, realçando o espresso — textura suave.",
+    "preco": 11.00,
+    "imagem": "https://images.pexels.com/photos/3879495/pexels-photo-3879495.jpeg"
+  },
+  {
+    "id": 7,
+    "titulo": "Cappuccino",
+    "descricao": "Espuma generosa, latte art, equilíbrio entre café e leite — clássico aconchegante.",
+    "preco": 12.00,
+    "imagem": "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg"
+  },
+  {
+    "id": 8,
+    "titulo": "Latte",
+    "descricao": "Maior proporção de leite, muito cremoso, ideal para quem prefere suavidade.",
+    "preco": 13.50,
+    "imagem": "https://images.pexels.com/photos/2128026/pexels-photo-2128026.jpeg"
+  },
+  {
+    "id": 9,
+    "titulo": "Mocha",
+    "descricao": "Café com chocolate — mistura doce, indulgente, com cobertura ou espuma.",
+    "preco": 14.00,
+    "imagem": "https://images.pexels.com/photos/15800392/pexels-photo-15800392.jpeg"
+  },
+  {
+    "id": 10,
+    "titulo": "Americano",
+    "descricao": "Espresso diluído em água quente — sabor mais leve, suave e refrescante.",
+    "preco": 8.50,
+    "imagem": "https://images.pexels.com/photos/4264049/pexels-photo-4264049.jpeg"
+  },
+  {
+    "id": 11,
+    "titulo": "Cold Brew",
+    "descricao": "Café filtrado a frio por horas — notas suaves, baixa acidez, muito refrescante.",
+    "preco": 15.00,
+    "imagem": "https://images.pexels.com/photos/33241858/pexels-photo-33241858.jpeg"
+  },
+  {
+    "id": 12,
+    "titulo": "Affogato",
+    "descricao": "Sobremesa de sorvete “afogado” em espresso quente — doce e café juntos.",
+    "preco": 16.00,
+    "imagem": "https://images.pexels.com/photos/10066817/pexels-photo-10066817.jpeg"
+  }
+      ]
+}
+
