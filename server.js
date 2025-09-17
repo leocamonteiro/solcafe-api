@@ -68,3 +68,15 @@ app.delete('/products/:id', (req, res) => {
 app.listen(PORT, () => {
   console.log(`☕ CoffeeShop API rodando em http://localhost:${PORT}`);
 });
+
+const axios = require('axios');
+const url = 'https://solcafe-api.onrender.com/'; // substitua pela URL da sua API
+const interval = 30000; // 30 segundos
+
+function manterAtivo() {
+  axios.get(url)
+    .then(res => console.log(`Ping às ${new Date().toISOString()}: ${res.status}`))
+    .catch(err => console.error(`Erro no ping: ${err.message}`));
+}
+
+setInterval(manterAtivo, interval);
