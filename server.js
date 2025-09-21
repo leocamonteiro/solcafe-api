@@ -39,7 +39,7 @@ app.get('/products/:id', (req, res) => {
 });
 
 // POST: adiciona novo produto
-app.post('/products', (req, res) => {
+app.post('/products', autenticarToken, (req, res) => {
   const db = readDB();
   const novoProduto = req.body;
   novoProduto.id = Date.now(); // Gera ID único
@@ -51,7 +51,8 @@ app.post('/products', (req, res) => {
 });
 
 // DELETE: remove produto por ID
-app.delete('/products/:id', (req, res) => {
+app.delete('/products/:id', autenticarToken, (req, res) => {
+
   const db = readDB();
   const id = parseInt(req.params.id);
   const produtosAtualizados = db.products.filter(p => p.id !== id);
@@ -69,6 +70,8 @@ app.listen(PORT, () => {
   console.log(`☕ CoffeeShop API rodando em http://localhost:${PORT}`);
 });
 
+
+// Pinga a cada 30s para manter a API funcionando no Render
 const axios = require('axios');
 const url = 'https://solcafe-api.onrender.com/'; // substitua pela URL da sua API
 const interval = 30000; // 30 segundos
@@ -80,3 +83,36 @@ function manterAtivo() {
 }
 
 setInterval(manterAtivo, interval);
+
+
+// Implementação da Autenticação com JWT
+
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = 'sua-chave-secreta'; // idealmente, use variável de ambiente
+
+// Rota de login (simples, sem banco de dados)
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+
+  // Simulação de usuário fixo
+  if (username === 'admin' && password === '1234') {
+    const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '1h' });
+    return res.json({ token });
+  }
+
+  res.status(401).json({ error: 'Credenciais inválidas' });
+});
+
+// Middleware para proteger rotas
+function autenticarToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1]; // Bearer <token>
+
+  if (!token) return res.status(401).json({ error: 'Token não fornecido' });
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+    if (err) return res.status(403).json({ error: 'Token inválido ou expirado' });
+    req.user = user;
+    next();
+  });
+}
