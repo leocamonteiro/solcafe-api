@@ -92,16 +92,18 @@ const SECRET_KEY = 'sua-chave-secreta'; // idealmente, use variável de ambiente
 
 // Rota de login (simples, sem banco de dados)
 app.post('/login', (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
+  const db = readDB();
+  const user = db.users.find(u => u.email === email && u.password === password);
 
-  // Simulação de usuário fixo
-  if (username === 'admin' && password === '1234') {
-    const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '1h' });
+  if (user) {
+    const token = jwt.sign({ email: user.email, role: user.role }, SECRET_KEY, { expiresIn: '1h' });
     return res.json({ token });
   }
 
   res.status(401).json({ error: 'Credenciais inválidas' });
 });
+
 
 // Middleware para proteger rotas
 function autenticarToken(req, res, next) {
@@ -116,3 +118,60 @@ function autenticarToken(req, res, next) {
     next();
   });
 }
+
+// Implementação do endpoint para controle de usuários
+
+// GET: lista todos os usuários
+app.get('/users', autenticarToken, (req, res) => {
+  const db = readDB();
+  res.json(db.users || []);
+});
+
+// GET: usuário por ID
+app.get('/users/:id', autenticarToken, (req, res) => {
+  const db = readDB();
+  const user = db.users.find(u => u.id === parseInt(req.params.id));
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404).json({ error: 'Usuário não encontrado' });
+  }
+});
+
+// POST: cria novo usuário
+app.post('/users', autenticarToken, (req, res) => {
+  const db = readDB();
+  const { username, email, password, role } = req.body;
+
+  if (!username || !email || !password || !role) {
+    return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
+  }
+
+  const novoUsuario = {
+    id: Date.now(),
+    username,
+    email,
+    password,
+    role
+  };
+
+  db.users.push(novoUsuario);
+  writeDB(db);
+
+  res.status(201).json(novoUsuario);
+});
+
+// DELETE: remove usuário por ID
+app.delete('/users/:id', autenticarToken, (req, res) => {
+  const db = readDB();
+  const id = parseInt(req.params.id);
+  const usuariosAtualizados = db.users.filter(u => u.id !== id);
+
+  if (usuariosAtualizados.length === db.users.length) {
+    return res.status(404).json({ error: 'Usuário não encontrado' });
+  }
+
+  db.users = usuariosAtualizados;
+  writeDB(db);
+  res.status(204).send();
+});
