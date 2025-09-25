@@ -50,6 +50,23 @@ app.post('/products', autenticarToken, (req, res) => {
   res.status(201).json(novoProduto);
 });
 
+// PUT: atualiza produto por ID
+app.put('/products/:id', autenticarToken, (req, res) => {
+  const db = readDB();
+  const id = parseInt(req.params.id);
+  const index = db.products.findIndex(p => p.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: 'Produto não encontrado' });
+  }
+
+  const produtoAtualizado = { ...db.products[index], ...req.body, id };
+  db.products[index] = produtoAtualizado;
+  writeDB(db);
+
+  res.json(produtoAtualizado);
+});
+
 // DELETE: remove produto por ID
 app.delete('/products/:id', autenticarToken, (req, res) => {
 
@@ -139,7 +156,7 @@ app.get('/users/:id', autenticarToken, (req, res) => {
 });
 
 // POST: cria novo usuário
-app.post('/users', autenticarToken, (req, res) => {
+app.post('/users', (req, res) => {
   const db = readDB();
   const { username, email, password, role } = req.body;
 
@@ -160,6 +177,7 @@ app.post('/users', autenticarToken, (req, res) => {
 
   res.status(201).json(novoUsuario);
 });
+
 
 // DELETE: remove usuário por ID
 app.delete('/users/:id', autenticarToken, (req, res) => {

@@ -84,16 +84,8 @@
       "id": 11,
       "titulo": "Cold Brew",
       "descricao": "Café filtrado a frio por horas — notas suaves, baixa acidez, muito refrescante.",
-      "preco": 15,
+      "preco": 17,
       "imagem": "https://images.pexels.com/photos/33241858/pexels-photo-33241858.jpeg",
-      "availableInStock": 5
-    },
-    {
-      "id": 12,
-      "titulo": "Affogato",
-      "descricao": "Sobremesa de sorvete “afogado” em espresso quente — doce e café juntos.",
-      "preco": 16,
-      "imagem": "https://images.pexels.com/photos/10066817/pexels-photo-10066817.jpeg",
       "availableInStock": 5
     }
   ],
@@ -104,6 +96,27 @@
       "email": "admin@admin.com",
       "password": "admin1234",
       "role": "admin"
+    },
+    {
+      "id": 1758708576351,
+      "username": "Leonardo",
+      "email": "leo@hotmail.com",
+      "password": "senha1234",
+      "role": "client"
+    },
+    {
+      "id": 1758705618524,
+      "username": "Pipa",
+      "email": "pipa@gmail.com",
+      "password": "senha1234",
+      "role": "client"
+    },
+    {
+      "id": 1758810568378,
+      "username": "Fulanim",
+      "email": "teste@teste.com",
+      "password": "senha1234",
+      "role": "client"
     }
   ]
 }
