@@ -4,7 +4,7 @@
       "id": 1,
       "titulo": "Espresso",
       "descricao": "Café curto, intenso, com crema aveludada — puro e marcante.",
-      "preco": 6,
+      "preco": 6.5,
       "imagem": "https://images.pexels.com/photos/685527/pexels-photo-685527.jpeg",
       "availableInStock": 5
     },
